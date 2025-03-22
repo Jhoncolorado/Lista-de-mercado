@@ -1,0 +1,32 @@
+/* src/App.css (modificado) */
+.App {
+  text-align: left;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.App-logo {
+  height: 80px;
+  animation: none;
+}
+
+.App-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Puedes eliminar la animación por defecto */
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+

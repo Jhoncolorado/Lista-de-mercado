@@ -1,0 +1,76 @@
+/* Estilos globales personalizados */
+
+body {
+    background-color: #f8f9fa; /* Fondo claro */
+    font-family: 'Roboto', sans-serif;
+    color: #343a40;
+  }
+  
+  /* Encabezados y contenedores */
+  h1, h2, h3, h4, h5, h6 {
+    color: #343a40;
+    font-weight: 600;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Personaliza la cabecera de la app */
+  .App-header {
+    background-color: #007bff; /* Cambia el fondo a un azul vibrante */
+    color: #fff;
+    padding: 20px;
+  }
+  
+  /* Ajustes en la clase App */
+  .App {
+    text-align: left;
+    padding: 20px;
+  }
+  
+  /* Personaliza el logo, quitando la animación y ajustando el tamaño */
+  .App-logo {
+    animation: none;
+    height: 80px;
+  }
+  
+  /* Botones: puedes personalizar el color del botón primario */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Estilos para formularios */
+  .form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+  }
+  
+  /* Tarjetas o items de listas */
+  .list-group-item {
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  /* Responsividad adicional: ajusta tamaños para dispositivos pequeños */
+  @media (max-width: 768px) {
+    .App-header {
+      font-size: 1.2rem;
+      padding: 15px;
+    }
+    .btn-primary {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
