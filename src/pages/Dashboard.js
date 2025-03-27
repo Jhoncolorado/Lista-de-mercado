@@ -14,6 +14,7 @@ import ProductForm from '../components/ProductForm';
 import ProductList from '../components/ProductList';
 import BulkCalculator from '../components/BulkCalculator';
 import PriceComparison from '../components/PriceComparison';
+import PriceAnalysis from '../components/PriceAnalysis';
 
 // Funciones para interactuar con Firestore
 import { addProductToFirestore, updateProductInFirestore } from '../services/productService';
@@ -238,6 +239,8 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
+
+      <PriceAnalysis products={stats.recentProducts} />
     </div>
   );
 };

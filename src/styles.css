@@ -1,18 +1,20 @@
 /* --- VARIABLES --- */
 :root {
-  --primary-color: #2E7D32; /* Verde oscuro elegante */
-  --primary-dark: #1B5E20; /* Verde más oscuro para hover */
-  --secondary-color: #1F2E1F; /* Verde oscuro más suave para fondos */
-  --text-light: #FFFFFF; /* Blanco puro para mejor contraste */
-  --text-dark: #333333; /* Verde oscuro para texto en fondos claros */
-  --background-dark: #F5F5F5; /* Fondo principal más claro */
-  --background-light: #FFFFFF;
-  --success-color: #43A047; /* Verde para acciones exitosas */
-  --danger-color: #C62828; /* Rojo para acciones peligrosas */
-  --warning-color: #F9A825; /* Amarillo para advertencias */
-  --accent-color: #2E7D32;
-  --card-background: #FFFFFF; /* Fondo de tarjetas blanco */
-  --input-background: #FFFFFF; /* Fondo de inputs blanco */
+  --primary-color: #2E7D32;
+  --primary-dark: #1B5E20;
+  --primary-light: #4CAF50;
+  --secondary-color: #81C784;
+  --background-color: #F5F5F5;
+  --card-background: #FFFFFF;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --border-color: #E0E0E0;
+  --input-background: #FFFFFF;
+  --error-color: #D32F2F;
+  --success-color: #388E3C;
+  --warning-color: #FFA000;
+  --info-color: #1976D2;
+  --shadow-color: rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease-in-out;
@@ -20,7 +22,7 @@
 
 /* --- GLOBAL --- */
 body {
-  background: var(--background-dark);
+  background-color: var(--background-color);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: var(--text-dark);
   margin: 0;
@@ -162,7 +164,7 @@ body {
 .amount {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--accent-color);
+  color: var(--primary-color);
 }
 
 .comparison-section,
@@ -178,8 +180,8 @@ body {
   background: var(--card-background);
   padding: 1.5rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -250,8 +252,8 @@ body {
 }
 
 .form-control {
-  background: var(--input-background);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: var(--input-background);
+  border: 1px solid var(--border-color);
   color: var(--text-dark);
   padding: 0.75rem 1rem;
   border-radius: var(--border-radius);
@@ -261,9 +263,8 @@ body {
 }
 
 .form-control:focus {
-  background: var(--input-background);
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
 }
 
 .form-control::placeholder {
@@ -380,7 +381,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-danger {
-  background: var(--danger-color);
+  background: var(--error-color);
   color: white;
 }
 
@@ -391,13 +392,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- CARDS Y LISTAS --- */
 .card {
-  background: var(--secondary-color);
+  background: var(--card-background);
   border-radius: var(--border-radius);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 2px 4px var(--shadow-color);
   transition: var(--transition);
-  border: 1px solid rgba(46, 125, 50, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 .card:hover {
@@ -406,12 +407,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .list-group-item {
-  background: var(--secondary-color);
-  border: 1px solid rgba(46, 125, 50, 0.1);
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
   margin-bottom: 0.5rem;
   border-radius: var(--border-radius);
   padding: 1rem;
-  color: var(--text-light);
+  color: var(--text-dark);
   transition: var(--transition);
 }
 
@@ -434,7 +435,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--border-radius);
   text-align: center;
   margin-bottom: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
   color: var(--text-dark);
 }
 
@@ -498,7 +499,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.5rem;
   border-radius: var(--border-radius);
   margin-bottom: 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
   color: var(--text-dark);
   animation: slideIn 0.3s ease-out;
 }
@@ -666,7 +667,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ajustar colores de texto y elementos específicos */
 .price {
-  color: var(--accent-color);
+  color: var(--primary-color);
 }
 
 .category-card-header h3,
@@ -676,11 +677,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Enlaces */
 a {
-  color: var(--accent-color);
+  color: var(--primary-color);
 }
 
 a:hover {
-  color: var(--primary-color);
+  color: var(--primary-dark);
 }
 
 /* --- AUTH STYLES --- */
@@ -690,7 +691,7 @@ a:hover {
   align-items: center;
   min-height: calc(100vh - 64px);
   padding: 2rem;
-  background-color: var(--background-dark);
+  background-color: var(--background-color);
 }
 
 .auth-card {
@@ -700,7 +701,7 @@ a:hover {
   box-shadow: var(--box-shadow);
   width: 100%;
   max-width: 400px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 .auth-card h2 {
@@ -723,14 +724,14 @@ a:hover {
 .auth-card .form-control {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   transition: var(--transition);
 }
 
 .auth-card .form-control:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
 }
 
 .auth-card .btn {
@@ -820,15 +821,295 @@ a:hover {
 }
 
 .alert-danger {
-  background-color: var(--danger-color);
+  background-color: var(--error-color);
   color: white;
-  border: 1px solid var(--danger-color);
+  border: 1px solid var(--error-color);
 }
 
 .alert-success {
   background-color: var(--success-color);
   color: white;
   border: 1px solid var(--success-color);
+}
+
+/* Product Edit Form Styles */
+.product-edit-form {
+  padding: 1rem;
+  background: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-edit-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.product-edit-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.product-edit-form input[type="text"],
+.product-edit-form input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--input-background);
+  color: var(--text-dark);
+}
+
+.product-edit-form input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.product-edit-form .checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.product-edit-form .form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.product-edit-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.product-edit-form button[type="submit"] {
+  background: var(--primary-color);
+  color: white;
+}
+
+.product-edit-form button[type="submit"]:hover {
+  background: var(--primary-dark);
+}
+
+.product-edit-form button[type="button"] {
+  background: var(--secondary-color);
+  color: var(--text-dark);
+}
+
+.product-edit-form button[type="button"]:hover {
+  background: var(--secondary-dark);
+}
+
+/* Price Analysis Styles */
+.price-analysis {
+  padding: 2rem;
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.analysis-header {
+  margin-bottom: 2rem;
+}
+
+.month-selectors {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.expense-summary {
+  margin-bottom: 2rem;
+}
+
+.expense-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.expense-card {
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.expense-card h4 {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.expense-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.comparison-table {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+  background-color: var(--background-color);
+  font-weight: 600;
+}
+
+.price-increase {
+  color: var(--error-color);
+}
+
+.price-decrease {
+  color: var(--success-color);
+}
+
+@media (max-width: 768px) {
+  .month-selectors {
+    flex-direction: column;
+  }
+  
+  .expense-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Price Analysis Enhanced Styles */
+.analysis-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.chart-card {
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.chart-card h3 {
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 300px;
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .analysis-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Table improvements */
+.comparison-table {
+  overflow-x: auto;
+  margin-top: 1rem;
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th {
+  background-color: var(--background-color);
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.comparison-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table tr:hover {
+  background-color: var(--background-color);
+}
+
+.price-increase {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+.price-decrease {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+/* Expense cards improvements */
+.expense-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.expense-card {
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.expense-card:hover {
+  transform: translateY(-2px);
+}
+
+.expense-card h4 {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.expense-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
 }
 
 
