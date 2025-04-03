@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Jhoncolorado/Lista-de-mercado.git/static/css/main.d17747c0.css",
-    "main.js": "/Jhoncolorado/Lista-de-mercado.git/static/js/main.721c13be.js",
-    "index.html": "/Jhoncolorado/Lista-de-mercado.git/index.html",
-    "main.d17747c0.css.map": "/Jhoncolorado/Lista-de-mercado.git/static/css/main.d17747c0.css.map",
-    "main.721c13be.js.map": "/Jhoncolorado/Lista-de-mercado.git/static/js/main.721c13be.js.map"
+    "main.css": "/Lista-de-mercado/static/css/main.d17747c0.css",
+    "main.js": "/Lista-de-mercado/static/js/main.6894d4be.js",
+    "index.html": "/Lista-de-mercado/index.html",
+    "main.d17747c0.css.map": "/Lista-de-mercado/static/css/main.d17747c0.css.map",
+    "main.6894d4be.js.map": "/Lista-de-mercado/static/js/main.6894d4be.js.map"
   },
   "entrypoints": [
     "static/css/main.d17747c0.css",
-    "static/js/main.721c13be.js"
+    "static/js/main.6894d4be.js"
   ]
 }
