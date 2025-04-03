@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Jhoncolorado/Lista-de-mercado.git/static/css/main.d17747c0.css",
+    "main.js": "/Jhoncolorado/Lista-de-mercado.git/static/js/main.721c13be.js",
+    "index.html": "/Jhoncolorado/Lista-de-mercado.git/index.html",
+    "main.d17747c0.css.map": "/Jhoncolorado/Lista-de-mercado.git/static/css/main.d17747c0.css.map",
+    "main.721c13be.js.map": "/Jhoncolorado/Lista-de-mercado.git/static/js/main.721c13be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d17747c0.css",
+    "static/js/main.721c13be.js"
+  ]
+}
