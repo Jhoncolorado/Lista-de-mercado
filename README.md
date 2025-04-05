@@ -1,70 +1,402 @@
-# Getting Started with Create React App
+# 🛒 Gestor Lista de Mercado
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📝 Descripción
+Aplicación web responsiva para gestionar listas de mercado, permitiendo a los usuarios registrar productos, organizar compras por categorías, comparar precios entre diferentes meses y llevar un control detallado de gastos en supermercado.
 
-## Available Scripts
+## 🎯 Características Principales
 
-In the project directory, you can run:
+### 🔐 Autenticación y Seguridad
+- Múltiples métodos de inicio de sesión:
+  - Google
+  - GitHub
+  - Correo electrónico y contraseña
+- Gestión segura de contraseñas
+- Protección de rutas privadas
+- Cierre de sesión seguro
 
-### `npm start`
+### 📦 Gestión de Productos
+- Agregar productos con:
+  - Nombre
+  - Marca
+  - Precio
+  - Unidad de medida
+  - Categoría
+  - Tienda asociada
+- Actualización de información de productos
+- Desactivación de productos no necesarios
+- Filtrado por múltiples criterios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🏪 Gestión de Tiendas
+- Crear y editar tiendas
+- Asociar productos a tiendas específicas
+- Gestionar múltiples tiendas por usuario
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📊 Análisis de Precios
+- Comparación de precios entre meses
+- Gráficos de evolución de precios
+- Resumen de gastos mensuales
+- Calculadora de productos a granel
 
-### `npm test`
+### 📱 Diseño Responsivo
+- Interfaz adaptable a todos los dispositivos
+- Diseño intuitivo y amigable
+- Navegación optimizada para móviles
+- Experiencia de usuario consistente
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📞 Soporte y Asistencia
+- Formulario de contacto integrado con EmailJS
+- Sistema de tickets de soporte
+- Documentación de ayuda
+- Respuesta rápida a consultas
 
-### `npm run build`
+## 🛠️ Tecnologías Utilizadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
+- React.js
+- React Router para navegación
+- React Bootstrap para UI
+- Recharts para gráficos
+- EmailJS para sistema de contacto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Autenticación y Base de Datos
+- Firebase Authentication
+- Firebase Firestore
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Estilos y Diseño
+- CSS personalizado
+- Bootstrap 5
+- Diseño responsivo con Media Queries
 
-### `npm run eject`
+## 🔧 Detalles Técnicos y Ejemplos de Implementación
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🔐 Configuración de Firebase
+```javascript
+// src/services/firebaseConfig.js
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📧 Implementación del Sistema de Contacto
+```javascript
+// src/pages/Contacto.js
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  
+  try {
+    await emailjs.sendForm(
+      'service_67gzh7c',
+      'template_iat4brq',
+      form.current,
+      'otMBvxVALs1C_-wVc'
+    );
+    
+    setStatus({
+      type: 'success',
+      message: '¡Mensaje enviado exitosamente!'
+    });
+  } catch (error) {
+    setStatus({
+      type: 'danger',
+      message: 'Error al enviar el mensaje'
+    });
+  }
+  
+  setLoading(false);
+};
+```
 
-## Learn More
+### 📊 Visualización de Datos con Recharts
+```javascript
+// src/components/PriceAnalysis.js
+<ResponsiveContainer width="100%" height={400}>
+  <LineChart data={priceHistory}>
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="month" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Line 
+      type="monotone" 
+      dataKey="price" 
+      stroke="#2E7D32"
+      name="Precio" 
+    />
+  </LineChart>
+</ResponsiveContainer>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🛡️ Protección de Rutas
+```javascript
+// src/components/PrivateRoute.js
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const PrivateRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+  
+  return currentUser ? children : <Navigate to="/login" />;
+};
+```
 
-### Code Splitting
+### 🎨 Estilos Responsivos
+```css
+/* src/styles.css */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-overview {
+    flex-direction: column;
+  }
+}
+```
 
-### Analyzing the Bundle Size
+## 📚 Estructura del Proyecto
+```
+gestor-lista-mercado/
+├── src/
+│   ├── components/          # Componentes reutilizables
+│   │   ├── Header.js
+│   │   ├── ProductForm.js
+│   │   └── PriceAnalysis.js
+│   ├── contexts/           # Contextos de React
+│   │   └── AuthContext.js
+│   ├── pages/             # Páginas principales
+│   │   ├── Dashboard.js
+│   │   ├── Products.js
+│   │   └── Contacto.js
+│   ├── services/          # Servicios y configuraciones
+│   │   ├── firebaseConfig.js
+│   │   └── authServices.js
+│   └── styles/            # Archivos de estilos
+│       ├── styles.css
+│       └── custom.css
+├── public/
+│   └── index.html
+└── package.json
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔄 Flujo de Datos
+```mermaid
+graph TD
+    A[Usuario] -->|Interactúa| B[Componente React]
+    B -->|Dispara Acción| C[Servicio]
+    C -->|Actualiza| D[Firebase/EmailJS]
+    D -->|Responde| C
+    C -->|Actualiza Estado| B
+    B -->|Renderiza| A
+```
 
-### Making a Progressive Web App
+## 📦 Dependencias Principales
+```json
+{
+  "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "bootstrap": "^5.2.3",
+    "firebase": "^9.17.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
+    "react-router-dom": "^6.8.2",
+    "recharts": "^2.4.3"
+  }
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🚀 Scripts Disponibles
+```bash
+# Iniciar en modo desarrollo
+npm start
 
-### Advanced Configuration
+# Construir para producción
+npm run build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Ejecutar pruebas
+npm test
 
-### Deployment
+# Ejecutar pruebas con cobertura
+npm run test:coverage
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🔍 Ejemplos de Uso
 
-### `npm run build` fails to minify
+### Autenticación con Google
+```javascript
+const handleGoogleLogin = async () => {
+  try {
+    await loginWithGoogle();
+    navigate('/dashboard');
+  } catch (error) {
+    setError('Error al iniciar sesión con Google');
+  }
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Agregar un Producto
+```javascript
+const addProduct = async (productData) => {
+  try {
+    const docRef = await addDoc(collection(db, 'products'), {
+      ...productData,
+      userId: currentUser.uid,
+      createdAt: serverTimestamp()
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error('Error al agregar producto:', error);
+    throw error;
+  }
+};
+```
+
+### Análisis de Precios
+```javascript
+const calculatePriceStats = (products) => {
+  return products.reduce((stats, product) => ({
+    total: stats.total + product.price,
+    average: (stats.total + product.price) / (stats.count + 1),
+    count: stats.count + 1,
+    max: Math.max(stats.max, product.price),
+    min: Math.min(stats.min, product.price)
+  }), { total: 0, average: 0, count: 0, max: 0, min: Infinity });
+};
+```
+
+## 📋 Requisitos Previos
+- Node.js (v14 o superior)
+- npm (v6 o superior)
+- Cuenta de Firebase
+- Cuenta de EmailJS
+
+## 🚀 Instalación y Configuración
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd gestor-lista-mercado
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
+
+3. **Configurar Firebase**
+   - Crear proyecto en Firebase Console
+   - Habilitar Authentication y Firestore
+   - Copiar credenciales de configuración
+
+4. **Configurar EmailJS**
+   - Crear cuenta en EmailJS
+   - Configurar servicio de email
+   - Crear plantilla de email
+   - Obtener credenciales:
+     - Service ID
+     - Template ID
+     - Public Key
+
+5. **Configurar variables de entorno**
+   Crear archivo `.env` con:
+   ```
+   REACT_APP_FIREBASE_API_KEY=tu_api_key
+   REACT_APP_FIREBASE_AUTH_DOMAIN=tu_auth_domain
+   REACT_APP_FIREBASE_PROJECT_ID=tu_project_id
+   REACT_APP_FIREBASE_STORAGE_BUCKET=tu_storage_bucket
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=tu_messaging_sender_id
+   REACT_APP_FIREBASE_APP_ID=tu_app_id
+   ```
+
+6. **Iniciar la aplicación**
+   ```bash
+   npm start
+   ```
+
+## 📱 Uso de la Aplicación
+
+### 1. Registro e Inicio de Sesión
+- Acceder a la página principal
+- Seleccionar método de registro preferido
+- Completar información requerida
+- Iniciar sesión con credenciales
+
+### 2. Gestión de Productos
+- Ir a "Gestión de Productos"
+- Usar formulario para agregar productos
+- Editar productos existentes
+- Filtrar y buscar productos
+
+### 3. Análisis de Precios
+- Acceder a "Análisis de Precios"
+- Seleccionar rango de fechas
+- Ver gráficos comparativos
+- Consultar estadísticas
+
+### 4. Soporte
+- Ir a "Contacto"
+- Llenar formulario de contacto
+- Enviar consulta
+- Esperar respuesta por email
+
+## 🔍 Funcionalidades por Sprint
+
+### Sprint 1: Fundamentos
+✅ Gestión básica de productos
+✅ Sistema de autenticación
+✅ CRUD de tiendas y categorías
+
+### Sprint 2: Optimización
+✅ Filtros avanzados
+✅ Comparación de precios
+✅ Estadísticas de gastos
+
+### Sprint 3: Mejoras
+✅ Diseño responsivo
+✅ Sistema de soporte
+✅ Pruebas de seguridad
+
+## 👥 Contribución
+1. Fork del repositorio
+2. Crear rama para feature
+   ```bash
+   git checkout -b feature/NuevaCaracteristica
+   ```
+3. Commit de cambios
+   ```bash
+   git commit -m 'Agregar nueva característica'
+   ```
+4. Push a la rama
+   ```bash
+   git push origin feature/NuevaCaracteristica
+   ```
+5. Crear Pull Request
+
+
+## 📞 Contacto
+Para soporte o consultas:
+- Email: stivenhenaoronaldo1187@gmail.com
+- Teléfono: +1 234 567 890
+- Horario: Lunes a Viernes, 9:00 AM - 6:00 PM
+
+
